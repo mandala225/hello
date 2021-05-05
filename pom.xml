@@ -11,6 +11,8 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
+		  <maven.compiler.source>1.6</maven.compiler.source>
+                 <maven.compiler.target>1.6</maven.compiler.target>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.6.RELEASE</version>
