@@ -1,0 +1,42 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre_build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - mvn surefire-report:report #Running this task to execute unit tests and generate report.
+      - mvn test -f pom.xml -fn
+artifacts:
+  files:
+    - target/hello-docker-0.1.jar
+    - echo Artifacts uploading completed on `date`
+cache:
+  paths:
+    - '/root/.m2/**/*'
+reports: #New
+  SurefireReports: # CodeBuild will create a report group called "SurefireReports".
+    files: #Store all of the files
+      - '**/*'
+    base-directory: 'target/surefire-reports' # Location of the reports
+  jacoco-report:
+    files:
+      - '**/*' 
+    base-directory: 'target/site/jacoco'
+    file-format: 'JACOCOXML'
+  # arn:aws:codebuild:ap-south-1:516804113156:report-group/test-report-group-code-coverage:
+  #   files:
+  #     - '**/*'
+  #   #base-directory: 'target/simplecov-reports' # Location of the reports
+  #   files:
+  ##    - '**/*'
+  #   file-format: 'SIMPLECOV'
