@@ -5,7 +5,7 @@
 	<groupId>com.example.howtodoinjava</groupId>
 	<artifactId>hello-docker</artifactId>
 	<version>0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>hello-docker</name>
 	<description>Demo project for Spring Boot</description>
